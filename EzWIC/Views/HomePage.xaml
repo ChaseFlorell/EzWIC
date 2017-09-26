@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss" 
+    Title="EzWic"
+    x:Class="EzWIC.Views.HomePage">
+    
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient Rotation="150" IsRotationTopToBottom="true"> 
+            <xfg:GradientStep StepColor="#0071bd" StepPercentage="0" />
+            <xfg:GradientStep StepColor="#0071bd" StepPercentage=".5" />
+            <xfg:GradientStep StepColor="#c0f7fc" StepPercentage="1" />
+        </xfg:Gradient>
+    </xfg:ContentPageGloss.BackgroundGradient>
+
+    <StackLayout x:Name="MainPageStack" BackgroundColor="Transparent" Padding="0,10,0,0">
+            <Button x:Name="FoodSearchBtn" Text="WIC Food Search" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="FoodSearch_Clicked" />
+            <Button x:Name="FoodListBtn" Text="Food List" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="FoodList_Clicked" />
+            <Button x:Name="eWICCardBtn" Text="eWIC Card Balance" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="WICCard_Clicked" />
+        </StackLayout>
+</ContentPage>
