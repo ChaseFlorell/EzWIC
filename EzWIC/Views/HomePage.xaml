@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss" 
+    xmlns:ez="clr-namespace:EzWIC.Views.Layouts;assembly=EzWIC"
     Title="EzWic"
     x:Class="EzWIC.Views.HomePage">
     
@@ -13,9 +14,17 @@
         </xfg:Gradient>
     </xfg:ContentPageGloss.BackgroundGradient>
 
-    <StackLayout x:Name="MainPageStack" BackgroundColor="Transparent" Padding="0,10,0,0">
-            <Button x:Name="FoodSearchBtn" Text="WIC Food Search" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="FoodSearch_Clicked" />
-            <Button x:Name="FoodListBtn" Text="Food List" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="FoodList_Clicked" />
-            <Button x:Name="eWICCardBtn" Text="eWIC Card Balance" TextColor="White" BackgroundColor="#3299c6" Margin="15" HeightRequest="130" BorderRadius="0" Clicked="WICCard_Clicked" />
+    <ScrollView>
+        <StackLayout x:Name="MainPageStack" BackgroundColor="Transparent" Spacing="10">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,10,0,0"/>
+                </OnPlatform>
+            </StackLayout.Padding>
+            
+            <ez:HomeButton x:Name="FoodSearchBtn" Image="WicFoodSearch" Text="WIC Food Search" BorderRadius="3" Clicked="FoodSearch_Clicked" />
+            <ez:HomeButton x:Name="FoodListBtn" Image="FoodList" Text="Food List" BorderRadius="3" Clicked="FoodList_Clicked" />
+            <ez:HomeButton x:Name="eWICCardBtn" Image="C_B" Text="eWIC Card Balance" BorderRadius="3" Clicked="WICCard_Clicked" />
         </StackLayout>
+    </ScrollView>
 </ContentPage>
