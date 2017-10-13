@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:rb="clr-namespace:RoundedBoxView.Forms.Plugin.Abstractions;assembly=RoundedBoxView.Forms.Plugin.Abstractions"
-    x:Class="EzWIC.Views.Layouts.HomeButton"
-    HorizontalOptions="FillAndExpand">
 
-    <rb:RoundedBoxView x:Name="btnBox" 
-                       Color="#3299c6"
-                       Margin="10,0"
-                       AbsoluteLayout.LayoutBounds="0,20,1,150"
-                       AbsoluteLayout.LayoutFlags="WidthProportional"
-                       CornerRadius="{Binding BorderRadius}" />
-    
-    <Image x:Name="btnImage" 
+<AbsoluteLayout xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="EzWIC.Views.Layouts.HomeButton"
+                HorizontalOptions="FillAndExpand">
+
+    <Button x:Name="btnBox"
+            BackgroundColor="#3299c6"
+            Margin="10,0" 
+            AbsoluteLayout.LayoutBounds="0,20,1,150"
+            AbsoluteLayout.LayoutFlags="WidthProportional"
+            BorderRadius="{Binding BorderRadius}" 
+            Command="{Binding Command}"
+            CommandParameter="{Binding CommandParameter}">
+        <Button.BorderColor>
+            <OnPlatform x:TypeArguments="Color">
+                <On Platform="iOS" Value="#1d5c77"/>
+            </OnPlatform>
+        </Button.BorderColor>
+        <Button.BorderWidth>
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="iOS" Value=".5"/>
+            </OnPlatform>
+        </Button.BorderWidth>
+    </Button>
+
+    <Image x:Name="btnImage"
            Source="{Binding Image}"
            WidthRequest="80"
+           InputTransparent="True"
            AbsoluteLayout.LayoutBounds="0.5,0,-1,-1"
-           AbsoluteLayout.LayoutFlags="PositionProportional"/>
+           AbsoluteLayout.LayoutFlags="PositionProportional" />
 
-    <Label x:Name="btnLabel" 
+    <Label x:Name="btnLabel"
            Text="{Binding Text}"
            TextColor="White"
            FontSize="30"
+           InputTransparent="True"
            AbsoluteLayout.LayoutBounds="0.5,90,-1,-1"
            AbsoluteLayout.LayoutFlags="XProportional" />
-    
+
 </AbsoluteLayout>

@@ -1,32 +1,63 @@
 ﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EzWIC.Views.Layouts
 {
-    public partial class HomeButton : AbsoluteLayout
+    public partial class HomeButton
     {
-        private TapGestureRecognizer _tapped => new TapGestureRecognizer { Command = new Command(RaiseClicked) };
         public HomeButton()
         {
             InitializeComponent();
             btnBox.BindingContext = this;
             btnImage.BindingContext = this;
             btnLabel.BindingContext = this;
-            GestureRecognizers.Add(_tapped);
+            btnBox.Clicked += BtnBoxOnClicked;
+        }
+
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command),
+            typeof(ICommand),
+            typeof(HomeButton),
+            default(ICommand));
+
+        /// <summary>
+        /// Command summary. This is a bindable property.
+        /// </summary>
+        public ICommand Command
+        {
+            get { return (ICommand) GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter),
+            typeof(object),
+            typeof(HomeButton),
+            default(object));
+
+        /// <summary>
+        /// CommandParameter summary. This is a bindable property.
+        /// </summary>
+        public object CommandParameter
+        {
+            get { return (object) GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
+        private void BtnBoxOnClicked(object sender, EventArgs eventArgs) =>  Clicked?.Invoke(this,eventArgs);
+        
+        ~HomeButton()
+        {
+            btnBox.Clicked -= BtnBoxOnClicked;
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
+            // ReSharper disable once ExplicitCallerInfoArgument
             base.OnPropertyChanged(propertyName);
             if(propertyName == "BackgroundColor" && BackgroundColor != Color.Transparent){
                 ButtonBackgroundColor = BackgroundColor;
                 BackgroundColor = Color.Transparent;
             }
-        }
-
-        ~HomeButton()
-        {
-            GestureRecognizers.Remove(_tapped);
         }
 
         public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius),
@@ -99,8 +130,9 @@ namespace EzWIC.Views.Layouts
             set { SetValue(BackgroundColorProperty, value); }
         }
 
-
+        /// <summary>
+        /// Raised when the button is clicked.
+        /// </summary>
         public event EventHandler Clicked;
-        private void RaiseClicked() => Clicked?.Invoke(this, EventArgs.Empty);
     }
 }

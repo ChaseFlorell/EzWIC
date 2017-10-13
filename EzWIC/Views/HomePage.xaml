@@ -15,14 +15,8 @@
     </xfg:ContentPageGloss.BackgroundGradient>
 
     <ScrollView>
-        <StackLayout x:Name="MainPageStack" BackgroundColor="Transparent" Spacing="10">
-            <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="0,10,0,0"/>
-                </OnPlatform>
-            </StackLayout.Padding>
-            
-            <ez:HomeButton x:Name="FoodSearchBtn" Image="WicFoodSearch" Text="WIC Food Search" BorderRadius="3" Clicked="FoodSearch_Clicked" />
+        <StackLayout x:Name="MainPageStack" BackgroundColor="Transparent" Spacing="10" Padding="0,10,0,0">
+            <ez:HomeButton x:Name="FoodSearchBtn" Image="WicFoodSearch" Text="WIC Food Search" BorderRadius="3" Command="{Binding FoodSearchCommand}" CommandParameter="{Binding .}" />
             <ez:HomeButton x:Name="FoodListBtn" Image="FoodList" Text="Food List" BorderRadius="3" Clicked="FoodList_Clicked" />
             <ez:HomeButton x:Name="eWICCardBtn" Image="C_B" Text="eWIC Card Balance" BorderRadius="3" Clicked="WICCard_Clicked" />
         </StackLayout>

@@ -7,8 +7,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using RoundedBoxView.Forms.Plugin.Droid;
-using EzWIC.Droid.Resources;
 
 namespace EzWIC.Droid
 {
@@ -23,8 +21,7 @@ namespace EzWIC.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-			XFGloss.Droid.Library.Init(this, bundle);
-            RoundedBoxViewRenderer.Init();
+            XFGloss.Droid.Library.Init(this, bundle);
 			LoadApplication(new App());
         }
     }

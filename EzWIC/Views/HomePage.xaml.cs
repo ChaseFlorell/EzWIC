@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace EzWIC.Views
 {
-    public partial class HomePage : ContentPage
+    public partial class HomePage
     {
         public HomePage()
         {
             InitializeComponent();
-        }
-
-        void FoodSearch_Clicked(object sender, System.EventArgs e)
-        {
-            //throw new NotImplementedException();
+            BindingContext = this;
         }
 
 		void FoodList_Clicked(object sender, System.EventArgs e)
@@ -26,5 +19,12 @@ namespace EzWIC.Views
 			//throw new NotImplementedException();
 		}
 		
+        /// <summary>
+        /// example of how to do Command binding instead of a click handler
+        /// </summary>
+        public Command<object> FoodSearchCommand => new Command<object>(p =>
+        {
+            // throw new NotImpelementedExceptoin
+        });
     }
 }
